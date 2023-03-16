@@ -38,12 +38,15 @@ const onSubmit = ( event ) =>{
 
 const onGoogleSignIn = () => {
   dispatch( startGoogleSigIn() );
-  console.log('onGoogleSignIn');
+  // console.log('onGoogleSignIn');
 }
 
   return (
     <AuthLayout title='Login'>
-          <form onSubmit={ onSubmit }className='animate__animated animate__fadeIn animate__faster'>
+          <form
+          aria-label='submit-form' 
+          onSubmit={ onSubmit }
+          className='animate__animated animate__fadeIn animate__faster'>
             <Grid container>
                 <Grid item xs={ 12 } sx={{mt: 2 }}>
                   <TextField 
@@ -64,6 +67,9 @@ const onGoogleSignIn = () => {
                     placeholder="contraseña"
                     fullWidth
                     name="password"
+                    inputProps={{
+                      'data-testid': 'password'
+                    }}
                     value={ password }
                     onChange={ onInputChange }
                     />
@@ -89,7 +95,8 @@ const onGoogleSignIn = () => {
                     <Button
                       onClick={ onGoogleSignIn } 
                       variant='contained'
-                      disabled={ isAuthenticating } 
+                      disabled={ isAuthenticating }
+                      aria-label="google-btn" 
                       fullWidth>
                       <Google/>
                       <Typography sx={{ ml: 1 }}>Google</Typography>
